@@ -1,0 +1,67 @@
+server:
+  port: 23006
+
+spring:
+  application:
+    name: cmclink-mcp-server
+  ai:
+    model:
+      chat: deepseek
+      embedding: ollama
+    mcp:
+      server:
+        protocol: streamable
+        name: cmclink-mcp-server
+        # 工具变化时向 MCP 客户端发送 listChanged 通知（默认开启）
+        change-notification:
+          tool: true
+    deepseek:
+      api-key: sk-489da50b45514871877ad475253b7852
+      chat:
+        model: deepseek-chat
+        temperature: 0.7
+    # Embedding 模型配置（本地 Ollama 的 nomic-embed-text，用于工具向量化检索）
+    # 需先执行: ollama pull nomic-embed-text
+    ollama:
+      base-url: http://localhost:11434
+      embedding:
+        options:
+          model: nomic-embed-text
+    # Elasticsearch 向量存储（用于工具语义检索）
+    # dimensions 必须与 embedding 模型输出维度一致：nomic-embed-text = 768
+    vectorstore:
+      elasticsearch:
+        initialize-schema: true
+        index-name: mcp-tool-vector-index
+        dimensions: 768
+        similarity: cosine
+  elasticsearch:
+    uris: http://localhost:9200
+
+  cloud:
+    nacos:
+      server-addr: 100.104.226.11:8848
+      username: cmclink
+      password: BjeoJMICHu3YAoML
+      discovery:
+        namespace: cmclink
+        enabled: true
+
+cmclink:
+  mcp:
+    gateway:
+      # 各服务暴露 OpenAPI 文档的路径
+      open-api-path: /v3/api-docs
+      # 不注册为 MCP 工具的服务
+      excluded-services:
+        - cmclink-test-server
+      # 定时重扫并同步工具的间隔 / 首次延迟
+      refresh-interval: 60s
+      initial-delay: 60s
+      # 转发调用微服务的超时
+      connect-timeout: 5s
+      read-timeout: 30s
+      # 工具返回内容截断上限（字符）
+      max-response-size: 65536
+      # 工具描述截断上限（字符）
+      max-description-length: 1000
