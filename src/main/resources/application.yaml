@@ -65,3 +65,4 @@ cmclink:
       max-response-size: 65536
       # 工具描述截断上限（字符）
       max-description-length: 1000
+
