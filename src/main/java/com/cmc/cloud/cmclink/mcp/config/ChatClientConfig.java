@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class ChatClientConfig {
 
     /**
-     * 向量工具索引：将工具名称和描述嵌入到 Elasticsearch 向量存储中，支持语义检索
+     * 向量工具索引：将工具名称和描述嵌入到 Qdrant 向量存储中，支持语义检索
      */
     @Bean
     public ToolIndex toolIndex(VectorStore vectorStore) {

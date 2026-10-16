@@ -21,22 +21,17 @@ spring:
         model: deepseek-chat
         temperature: 0.7
     # Embedding 模型配置（本地 Ollama 的 nomic-embed-text，用于工具向量化检索）
-    # 需先执行: ollama pull nomic-embed-text
     ollama:
       base-url: http://localhost:11434
       embedding:
         options:
           model: nomic-embed-text
-    # Elasticsearch 向量存储（用于工具语义检索）
-    # dimensions 必须与 embedding 模型输出维度一致：nomic-embed-text = 768
     vectorstore:
-      elasticsearch:
+      qdrant:
+        host: 127.0.0.1
+        port: 6334
+        collection-name: mcp_tool_vector_index
         initialize-schema: true
-        index-name: mcp-tool-vector-index
-        dimensions: 768
-        similarity: cosine
-  elasticsearch:
-    uris: http://localhost:9200
 
   cloud:
     nacos:

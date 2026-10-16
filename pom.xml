@@ -66,14 +66,10 @@
             <groupId>org.springframework.ai</groupId>
             <artifactId>spring-ai-starter-tool-search-advisor</artifactId>
         </dependency>
+        <!-- Qdrant 向量存储（gRPC 6334 端口连接） -->
         <dependency>
             <groupId>org.springframework.ai</groupId>
-            <artifactId>spring-ai-starter-vector-store-elasticsearch</artifactId>
-        </dependency>
-        <!-- 提供 Rest5Client 自动配置（spring-ai 的 elasticsearch vector store 需要它连接 ES） -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-elasticsearch</artifactId>
+            <artifactId>spring-ai-starter-vector-store-qdrant</artifactId>
         </dependency>
     </dependencies>
 

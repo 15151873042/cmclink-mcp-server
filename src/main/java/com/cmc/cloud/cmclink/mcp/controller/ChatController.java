@@ -19,7 +19,7 @@ public class ChatController {
      * 调用 MCP 工具的示例接口
      */
     @GetMapping("/chat")
-    public String chat(@RequestParam(value = "message", defaultValue = "帮我发起一个简单连续多节点审批工作流, l1UserList为274，其他的都为空") String message) {
+    public String chat(@RequestParam(value = "message", defaultValue = "帮我发起一个简单连续多节点审批工作流, L1审批用户为胡鹏，其他均为集运管理员") String message) {
         try {
             ChatClient.ChatClientRequestSpec request = chatClient.prompt(message);
             request.advisors(a -> a.param(ChatMemory.CONVERSATION_ID, "defaultConversationId"));
