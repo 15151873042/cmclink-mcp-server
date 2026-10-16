@@ -19,7 +19,7 @@ spring:
       api-key: sk-489da50b45514871877ad475253b7852
       chat:
         model: deepseek-chat
-        temperature: 0.7
+#        temperature: 0.7
     # Embedding 模型配置（本地 Ollama 的 nomic-embed-text，用于工具向量化检索）
     ollama:
       base-url: http://localhost:11434
@@ -60,4 +60,6 @@ cmclink:
       max-response-size: 65536
       # 工具描述截断上限（字符）
       max-description-length: 1000
-
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: debug

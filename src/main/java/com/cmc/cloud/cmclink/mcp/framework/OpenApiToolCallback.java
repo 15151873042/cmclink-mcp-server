@@ -145,7 +145,7 @@ public class OpenApiToolCallback implements ToolCallback {
     private HttpHeaders buildHeaders(Map<String, Object> args) {
         HttpHeaders headers = new HttpHeaders();
         headers.set("tenant-id", "172");
-        headers.set("authorization", "Bearer 4dd8de00980f492a93456d3c96aedbe3");
+        headers.set("authorization", "Bearer 5a443d5bdf144399a1124c22c0543917");
         for (String name : headerParamNames) {
             Object value = args.get(name);
             if (value != null) {

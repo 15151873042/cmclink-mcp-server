@@ -2,6 +2,7 @@ package com.cmc.cloud.cmclink.mcp.config;
 
 import com.cmc.cloud.cmclink.mcp.framework.OpenApiToolCallbackProvider;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.client.advisor.toolsearch.ToolSearchToolCallingAdvisor;
 import org.springframework.ai.tool.toolsearch.ToolIndex;
 import org.springframework.ai.tool.toolsearch.index.vectorstore.VectorToolIndex;
@@ -38,7 +39,7 @@ public class ChatClientConfig {
                                  ToolSearchToolCallingAdvisor toolSearchAdvisor) {
         return builder
                 .defaultTools(openApiToolCallbackProvider)
-                .defaultAdvisors(toolSearchAdvisor)
+                .defaultAdvisors(new SimpleLoggerAdvisor(), toolSearchAdvisor)
                 .build();
     }
 }
